@@ -36,5 +36,4 @@ public class Users {
     @NotBlank
     @Size(max = 50)
     private String lastName;
-
 }
