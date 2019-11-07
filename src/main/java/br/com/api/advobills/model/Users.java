@@ -26,6 +26,10 @@ public class Users {
     private String userName;
 
     @NotBlank
+    @Column(unique = true, name = "email")
+    private String email;
+
+    @NotBlank
     @Size(max = 50)
     private String password;
 
