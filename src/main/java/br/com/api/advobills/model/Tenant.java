@@ -5,41 +5,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users")
-public class Users {
+@Table(name = "tenant")
+public class Tenant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Column(unique = true, name = "user_name")
-    @Size(min = 1, max = 100)
-    private String userName;
-
-    @NotBlank
-    @Column(unique = true, name = "email")
+    @Size(max = 50)
+    private String name;
+    @Column(name = "owner", columnDefinition = "boolean default false", length = 1)
+    private Boolean owner;
+    @Size(max = 11)
+    private String cpf;
+    @Size(max = 20)
+    private String rg;
+    @Size(max = 50)
     private String email;
+    @Size(max = 20)
+    private String phone;
 
-    @NotBlank
-    @Size(max = 50)
-    private String password;
-
-    @NotBlank
-    @Size(max = 50)
-    private String firstName;
-
-    @NotBlank
-    @Size(max = 50)
-    private String lastName;
-
+    @ManyToOne
+    private Apartment apartment;
 
 }
